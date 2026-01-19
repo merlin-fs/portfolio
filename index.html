@@ -3,78 +3,559 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tymur Fesyna — Senior Unity Developer / Tech Lead</title>
-  <meta name="description" content="Portfolio: mobile games, UI systems, architecture, refactoring, delivery." />
+  <title>Тимур Фесина — Senior Unity Developer / Tech Lead</title>
+  <meta name="description" content="Портфоліо Unity розробника: мобільні ігри, UI, архітектура, рефакторинг, delivery." />
+
+  <!-- IMPORTANT: site is served from /portfolio/ -->
+  <base href="/portfolio/">
+
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; background:#0b0f14; color:#e8eef6; }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px 60px; }
-    a { color:#8cc8ff; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    .top { display:flex; gap:18px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
-    .h1 { font-size: 28px; margin: 0 0 6px; }
-    .muted { color:#b5c2d3; margin: 0; }
-    .grid { display:grid; grid-template-columns: 1fr; gap:14px; margin-top:18px; }
-    @media (min-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } }
-    .card { background:#121a24; border:1px solid #1f2a38; border-radius:16px; padding:14px; }
-    .card h3 { margin: 0 0 8px; font-size: 18px; }
-    .tags { font-size: 12px; color:#b5c2d3; margin-top:8px; }
-    .thumb { width:100%; border-radius:12px; border:1px solid #1f2a38; display:block; }
-    .video { aspect-ratio: 16 / 9; width:100%; border:0; border-radius:16px; }
-    ul { margin: 8px 0 0 18px; }
+    :root{
+      --bg: #0b0f14;
+      --bg2:#0f1520;
+      --card:#121a24;
+      --border:#1f2a38;
+      --text:#e8eef6;
+      --muted:#b5c2d3;
+      --link:#8cc8ff;
+      --pill:#172232;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --r: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(140,200,255,.12), transparent 60%),
+                  radial-gradient(1000px 500px at 90% 0%, rgba(120,255,200,.10), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{ color:var(--link); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{ max-width: 1040px; margin:0 auto; padding: 28px 18px 64px; }
+    .header{
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 18px;
+    }
+    h1{ font-size:28px; margin:0 0 6px; letter-spacing:.2px; }
+    .subtitle{ color:var(--muted); margin:0; }
+    .meta{ color:var(--muted); margin:10px 0 0; display:flex; gap:12px; flex-wrap:wrap; }
+    .meta span{ display:inline-flex; gap:8px; align-items:center; }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 16px 0 4px;
+    }
+    .chip{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 8px 12px;
+      border:1px solid var(--border);
+      background: rgba(18,26,36,.7);
+      border-radius: 999px;
+      color: var(--text);
+      box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    }
+    .chip:hover{ text-decoration:none; border-color:#2a3a52; }
+
+    .hero{
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(18,26,36,.85), rgba(15,21,32,.65));
+      box-shadow: var(--shadow);
+    }
+    .hero p{ margin:0; color:var(--muted); }
+    .hero strong{ color:var(--text); }
+
+    h2{
+      margin: 26px 0 10px;
+      font-size: 18px;
+      letter-spacing:.2px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top: 12px;
+    }
+    @media (min-width: 900px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .card{
+      background: rgba(18,26,36,.92);
+      border:1px solid var(--border);
+      border-radius: var(--r);
+      padding: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.24);
+    }
+    .card-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .card h3{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .small{ font-size: 12px; color: var(--muted); }
+    .role{ margin-top: 6px; color: var(--muted); }
+    .bullets{ margin: 10px 0 0 18px; color: var(--text); }
+    .bullets li{ margin: 6px 0; }
+    .tags{ margin-top: 10px; display:flex; flex-wrap:wrap; gap:8px; }
+    .pill{
+      font-size: 12px;
+      color: var(--muted);
+      padding: 6px 10px;
+      background: var(--pill);
+      border:1px solid var(--border);
+      border-radius: 999px;
+      white-space:nowrap;
+    }
+
+    .links{
+      margin-top: 10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 9px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(15,21,32,.75);
+      color: var(--text);
+    }
+    .btn:hover{
+      border-color:#2a3a52;
+      text-decoration:none;
+    }
+
+    details{ margin-top: 12px; }
+    summary{
+      cursor:pointer;
+      user-select:none;
+      list-style:none;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(15,21,32,.65);
+      color: var(--text);
+    }
+    summary::-webkit-details-marker{ display:none; }
+
+    .media-grid{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 900px){
+      .media-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .media-grid img, .media-grid video{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      box-shadow: 0 10px 24px rgba(0,0,0,.20);
+    }
+
+    .footer{
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 12px;
+      opacity:.95;
+    }
+
+    .hr{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(31,42,56,.9), transparent);
+      margin: 26px 0 10px;
+    }
+
+    /* tiny helper for icons via unicode (no external libs) */
+    .ico{ opacity:.9; }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <div class="top">
+
+    <div class="header">
       <div>
-        <h1 class="h1">Tymur Fesyna</h1>
-        <p class="muted">Senior Unity Developer / Tech Lead (Mobile, Remote)</p>
-        <p class="muted">
-          Email: <a href="mailto:timur.fesina@gmail.com">timur.fesina@gmail.com</a> ·
-          GitHub: <a href="https://github.com/USERNAME">USERNAME</a> ·
-          LinkedIn: <a href="https://www.linkedin.com/in/USERNAME/">USERNAME</a>
-        </p>
+        <h1>Тимур Фесина</h1>
+        <p class="subtitle">Senior Unity Developer / Tech Lead (Mobile, Remote)</p>
+        <div class="meta">
+          <span><span class="ico">📍</span> Warsaw / Remote</span>
+          <span><span class="ico">✉️</span> <a href="mailto:timur.fesina@gmail.com">timur.fesina@gmail.com</a></span>
+          <span><span class="ico">💻</span> <a href="https://github.com/merlin-fs" target="_blank" rel="noreferrer">github.com/merlin-fs</a></span>
+          <!-- optional -->
+          <!-- <span><span class="ico">🔗</span> <a href="https://www.linkedin.com/in/..." target="_blank" rel="noreferrer">LinkedIn</a></span> -->
+        </div>
+
+        <div class="nav">
+          <a class="chip" href="#own">Власні ігри</a>
+          <a class="chip" href="#stepico">Stepico</a>
+          <a class="chip" href="#ugistudio">UGI Studio</a>
+          <a class="chip" href="#unibit">UniBit</a>
+          <a class="chip" href="#supergaming">Supergaming</a>
+        </div>
       </div>
     </div>
 
-    <h2>Showreel</h2>
-    <iframe class="video"
-      src="https://www.youtube.com/embed/VIDEO_ID"
-      title="Showreel"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+    <div class="hero">
+      <p>
+        <strong>Фокус:</strong> архітектура, UI системи, рефакторинг/підтримка легасі, delivery під вимоги замовника.
+        <br/>
+        <strong>English:</strong> reading/writing — OK; speaking — basic (improving).
+      </p>
+    </div>
 
-    <h2>Selected Projects</h2>
+    <div class="hr"></div>
+
+    <!-- OWN GAMES -->
+    <h2 id="own">Власні ігри</h2>
     <div class="grid">
 
-      <div class="card">
-        <img class="thumb" src="assets/projects/rugby/thumb.webp" alt="Rugby Manager" />
-        <h3>Rugby Manager (Mobile)</h3>
-        <ul>
-          <li>Refactored legacy codebase and delivered client-requested features.</li>
-          <li>Improved maintainability and UI flow stability.</li>
-        </ul>
-        <div class="tags">Unity · C# · Refactoring · Mobile UI</div>
-        <p><a href="https://youtu.be/VIDEO_LINK">Video</a></p>
-      </div>
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h3>Number Match — NumberMergePath (Google Play)</h3>
+            <div class="role">Role: Solo developer • Product/Indie</div>
+          </div>
+          <div class="small">Released</div>
+        </div>
 
-      <div class="card">
-        <img class="thumb" src="assets/projects/cardgame/thumb.webp" alt="Card Game" />
-        <h3>Card Game (Mobile)</h3>
-        <ul>
-          <li>Architecture contribution + social features.</li>
-          <li>UI + UI effects / polish.</li>
+        <ul class="bullets">
+          <li>Повний цикл: gameplay, UI, стабілізація, реліз, підтримка.</li>
         </ul>
-        <div class="tags">Unity · Architecture · Social · UI/VFX</div>
-      </div>
+
+        <div class="tags">
+          <span class="pill">Unity</span>
+          <span class="pill">Mobile</span>
+          <span class="pill">UI</span>
+          <span class="pill">Delivery</span>
+        </div>
+
+        <div class="links">
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.ftg.studio.NumberMergePath" target="_blank" rel="noreferrer">Google Play</a>
+        </div>
+
+        <!-- Optional: add media later -->
+        <!--
+        <details>
+          <summary>Медіа</summary>
+          <div class="media-grid">
+            <img src="assets/projects/NumberMatch/screen1.webp" alt="Number Match">
+          </div>
+        </details>
+        -->
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h3>Match-3 RPG (WIP)</h3>
+            <div class="role">Role: Solo / Tech Lead • In development</div>
+          </div>
+          <div class="small">In progress</div>
+        </div>
+
+        <ul class="bullets">
+          <li>Архітектура, контент-пайплайн, UI, системи прогресії/боїв (у розробці).</li>
+        </ul>
+
+        <div class="tags">
+          <span class="pill">Unity</span>
+          <span class="pill">Architecture</span>
+          <span class="pill">UI Toolkit / UGUI</span>
+        </div>
+
+        <div class="links">
+          <span class="small">Посилання/демо можна додати пізніше</span>
+        </div>
+      </article>
 
     </div>
 
-    <h2>About</h2>
-    <p class="muted">
-      Internal Tech Lead focused on architecture, UI systems, delivery and refactoring.
-      English: reading/writing OK, speaking basic (improving).
-    </p>
+    <!-- STEPICO -->
+    <h2 id="stepico">Stepico Games — Senior Unity Developer (09/2024–11/2025)</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h3>Rugby Manager (Mobile)</h3>
+            <div class="role">Refactor existing project • Client-driven features</div>
+          </div>
+          <div class="small">Stepico</div>
+        </div>
+
+        <ul class="bullets">
+          <li>Підхопив готовий проєкт іншої команди: рефакторинг та стабілізація.</li>
+          <li>Доробки під вимоги замовника, підтримка та розвиток існуючої кодової бази.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="pill">Unity</span>
+          <span class="pill">Refactoring</span>
+          <span class="pill">Mobile</span>
+          <span class="pill">Delivery</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h3>Card Game (Mobile)</h3>
+            <div class="role">Architecture • Social features • UI + UI effects</div>
+          </div>
+          <div class="small">Stepico</div>
+        </div>
+
+        <ul class="bullets">
+          <li>Архітектура та технічні рішення, масштабованість UI.</li>
+          <li>Соціальна складова (фічі взаємодії), UI та ефекти/полірування.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="pill">Unity</span>
+          <span class="pill">Architecture</span>
+          <span class="pill">UI</span>
+          <span class="pill">UI Effects</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- UGI -->
+    <h2 id="ugistudio">UGI Studio — Senior Unity Developer / Partner</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h3>Mobile RPG</h3>
+            <div class="role">Architecture • Technology foundation</div>
+          </div>
+          <div class="small">UGI Studio</div>
+        </div>
+
+        <ul class="bullets">
+          <li>Проєктування архітектури, базових систем та технологічного фундаменту.</li>
+          <li>Підготовка структури для розширення контентом/фічами.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="pill">Unity</span>
+          <span class="pill">Architecture</span>
+          <span class="pill">Mobile</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h3>Mingle Farm Merge & Match</h3>
+            <div class="role">Technology + UI (production)</div>
+          </div>
+          <div class="small">UGI Studio</div>
+        </div>
+
+        <ul class="bullets">
+          <li>Технологічна частина та UI фічі, підтримка продакшн-розробки.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="pill">Unity</span>
+          <span class="pill">UI</span>
+          <span class="pill">Delivery</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- UNIBIT -->
+    <h2 id="unibit">UniBit — Senior / Team Lead Unity Developer</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h3>Mingle Farm Merge & Match (Mobile)</h3>
+            <div class="role">Team Lead / Tech Lead • Architecture + Development</div>
+          </div>
+          <div class="small">UniBit</div>
+        </div>
+
+        <ul class="bullets">
+          <li>Архітектура та розробка, технічне лідерство в команді.</li>
+          <li>Системи UI/мета-прогресії та фічі продакшн-рівня.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="pill">Unity</span>
+          <span class="pill">Tech Lead</span>
+          <span class="pill">Architecture</span>
+          <span class="pill">UI</span>
+        </div>
+
+        <details>
+          <summary>Медіа (відео/скріни)</summary>
+          <div class="media-grid">
+
+            <!-- Videos -->
+            <video controls playsinline preload="metadata">
+              <source src="assets/projects/MingleFarm/AutoMerge.mp4" type="video/mp4">
+              Ваш браузер не підтримує відео.
+            </video>
+
+            <video controls playsinline preload="metadata">
+              <source src="assets/projects/MingleFarm/Newspaper.mp4" type="video/mp4">
+              Ваш браузер не підтримує відео.
+            </video>
+
+            <!-- Images (wrapped to open in new tab) -->
+            <a href="assets/projects/MingleFarm/Decoration_1.png" target="_blank" rel="noreferrer">
+              <img loading="lazy" src="assets/projects/MingleFarm/Decoration_1.png" alt="Mingle Farm — Decoration UI">
+            </a>
+
+            <a href="assets/projects/MingleFarm/dailyReward.png" target="_blank" rel="noreferrer">
+              <img loading="lazy" src="assets/projects/MingleFarm/dailyReward.png" alt="Mingle Farm — Daily Reward">
+            </a>
+
+            <a href="assets/projects/MingleFarm/AutoMerge_1.png" target="_blank" rel="noreferrer">
+              <img loading="lazy" src="assets/projects/MingleFarm/AutoMerge_1.png" alt="Mingle Farm — Auto Merge">
+            </a>
+
+            <a href="assets/projects/MingleFarm/TradeMarket_1.png" target="_blank" rel="noreferrer">
+              <img loading="lazy" src="assets/projects/MingleFarm/TradeMarket_1.png" alt="Mingle Farm — Trade Market">
+            </a>
+
+          </div>
+        </details>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h3>Kids AR Mobile Game</h3>
+            <div class="role">Team Lead / Tech Lead • Architecture + Development</div>
+          </div>
+          <div class="small">UniBit</div>
+        </div>
+
+        <ul class="bullets">
+          <li>Мобільна AR-гра: по фізичному малюнку відкривається відповідна “казка/міні-гра”.</li>
+          <li>Архітектура та розробка ключових систем (пайплайн “image → content”).</li>
+        </ul>
+
+        <div class="tags">
+          <span class="pill">Unity</span>
+          <span class="pill">AR</span>
+          <span class="pill">Architecture</span>
+          <span class="pill">Tech Lead</span>
+        </div>
+
+        <!-- Add media later if you want -->
+        <!--
+        <details>
+          <summary>Медіа</summary>
+          <div class="media-grid">
+            <img src="assets/projects/ARKids/s1.webp" alt="AR Kids">
+          </div>
+        </details>
+        -->
+      </article>
+
+    </div>
+
+    <!-- SUPERGAMING -->
+    <h2 id="supergaming">Supergaming (Caesar Ventures Ltd) — Middle Unity Developer</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h3>Solitaire (Mobile) + Meta-game (3D puzzle scene)</h3>
+            <div class="role">Owned full UI part</div>
+          </div>
+          <div class="small">Supergaming</div>
+        </div>
+
+        <ul class="bullets">
+          <li>Повністю відповідав за UI: екрани, флоу, інтерфейсні компоненти.</li>
+          <li>Meta-game: 3D сцена-пазл, що “заповнюється” по мірі прогресу.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="pill">Unity</span>
+          <span class="pill">UGUI</span>
+          <span class="pill">UI Flows</span>
+          <span class="pill">Mobile</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <h3>“Slot” Physics Game (Mobile)</h3>
+            <div class="role">Full development from scratch • Multiplayer opponent mode</div>
+          </div>
+          <div class="small">Supergaming</div>
+        </div>
+
+        <ul class="bullets">
+          <li>Повна розробка з 0: фізика падіння м’яча, перешкоди, цільові отвори.</li>
+          <li>Додав режим гри з противником (по мережі).</li>
+        </ul>
+
+        <div class="tags">
+          <span class="pill">Unity</span>
+          <span class="pill">Physics</span>
+          <span class="pill">Networking</span>
+          <span class="pill">Mobile</span>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="footer">
+      <p>
+        * Якщо частина проєктів під NDA — можна прибрати назви/брендинг і залишити тільки відео/скріни з нейтральним описом.
+      </p>
+    </div>
+
   </div>
 </body>
 </html>
